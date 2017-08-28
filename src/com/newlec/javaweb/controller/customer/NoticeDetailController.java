@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,17 +23,18 @@ public class NoticeDetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*String _title = request.getParameter("title");
-		String title="";
+		String _id = request.getParameter("id");
+		String id="";
 
-		if(_title != null && !_title.equals(""))
-			title = _title;
-		---------------------------------------------------------------------------------------
-		List<Notice> list = null;
+		if(_id != null && !_id.equals(""))
+			id = _id;
 
-		String sql = "SELECT *FROM Notice WHERE title like ?";
-
+		Notice n = null;
+		
 		String url = "jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&amp;useSSL=false&characterEncoding=UTF-8";
+		String sql = "SELECT *FROM Notice WHERE id like ?";
+
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -42,33 +44,34 @@ public class NoticeDetailController extends HttpServlet{
 			// 실행
 			//Statement st = con.createStatement();
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, "%" + title + "%");
+			st.setString(1, "id");
 
 			// 결과 가져오기
 			ResultSet rs = st.executeQuery();
 
 			// Model 
-			list = new ArrayList<>();
-
+			
+			
 			// 결과 사용하기
 			while (rs.next()) {
-				Notice n = new Notice();
+				n = new Notice();
 				n.setId(rs.getString("ID"));
 				n.setTitle(rs.getString("TITLE"));
 				//..
-
-				list.add(n);
+				
 			}
 			rs.close();
 			st.close();
 			con.close();
 			
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
-		request.setAttribute("list", list);
-		*/
+		request.setAttribute("dd", n);
+		
 		//response.sendRedirect("notice.jsp");
 		request.getRequestDispatcher("/WEB-INF/views/customer/notice/detail.jsp").forward(request, response);
 	}

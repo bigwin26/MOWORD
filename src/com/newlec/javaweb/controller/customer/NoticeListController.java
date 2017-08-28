@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,10 @@ import com.newlec.javaweb.entity.Notice;
 
 @WebServlet("/customer/notice-list")
 public class NoticeListController extends HttpServlet{
-	
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String _title = request.getParameter("title");
 		String title="";
 
@@ -62,13 +63,14 @@ public class NoticeListController extends HttpServlet{
 			rs.close();
 			st.close();
 			con.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		request.setAttribute("list", list);
-		
+
 		//response.sendRedirect("notice.jsp");
 		request.getRequestDispatcher("/WEB-INF/views/customer/notice/list.jsp").forward(request, response);
 	}
