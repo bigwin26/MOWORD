@@ -115,7 +115,9 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
+				
 					<tr>
+
 						<td>${dd.id}</td>
 						<td>${dd.title}</td>
 						<td>newlec</td>

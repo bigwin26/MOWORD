@@ -100,15 +100,10 @@ body {
 
 .hr-list>ul {
 	overflow: auto;
+	display: flex;
 }
 
-.hr-list ul>li {
-	float: left;
-	/* padding-left: 9px; */
-	/* background: url("../images/bg-member-menu-vsp.png") no-repeat 13px center; */
-}
-
-.hr-list ul>li:first-child {
+.hr-list.pad li:first-child {
 	padding-left: 0px;
 	background: none;
 }
@@ -119,6 +114,7 @@ body {
          font-weight: bold;
          color: #979797;
       } */
+
 /* --------------------------------------------------------------------- */
 #header {
 	height: 70px;
@@ -172,7 +168,20 @@ body {
 	border: 5px solid #8CBA34;
 	left: 468px;
 	top: 21px;
+}
 
+#search-form form {
+	display: flex;
+}
+
+#search-form input[type=text] {
+	flex-grow: 1;
+	border: 0px;
+}
+
+#search-form label {
+	align-self: center;
+	padding: 0px 5px;
 }
 
 #member-menu {
@@ -193,11 +202,10 @@ body {
 	color: #979797;
 }
 
-#custom-menu{
-      right: 0px;
-      top: 40px;
-   }
-
+#custom-menu {
+	right: 0px;
+	top: 40px;
+}
 
 .content-container {
 	margin: auto;

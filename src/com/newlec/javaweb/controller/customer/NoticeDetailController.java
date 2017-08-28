@@ -44,8 +44,8 @@ public class NoticeDetailController extends HttpServlet{
 			// 실행
 			//Statement st = con.createStatement();
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, "id");
-
+			st.setString(1, id);
+			
 			// 결과 가져오기
 			ResultSet rs = st.executeQuery();
 
@@ -70,6 +70,8 @@ public class NoticeDetailController extends HttpServlet{
 			e.printStackTrace();
 		}
 
+		
+		
 		request.setAttribute("dd", n);
 		
 		//response.sendRedirect("notice.jsp");

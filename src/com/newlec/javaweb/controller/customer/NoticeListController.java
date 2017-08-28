@@ -69,6 +69,9 @@ public class NoticeListController extends HttpServlet{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		request.setAttribute("list", list);
 
 		//response.sendRedirect("notice.jsp");

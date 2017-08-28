@@ -51,7 +51,7 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-				<c:forEach var="n" items="${list}" begin="0" end="3" step="2">
+				<c:forEach var="n" items="${list}">
 					<tr>
 						<td>${n.id}</td>
 						<td><a href="notice-detail?id=${n.id}">${n.title}</a></td>
