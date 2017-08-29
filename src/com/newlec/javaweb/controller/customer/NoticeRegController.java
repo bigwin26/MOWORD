@@ -17,20 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.newlec.javaweb.entity.Notice;
 
-@WebServlet("/customer/notice-detail")
-public class NoticeDetailController extends HttpServlet{
-	
+@WebServlet("/customer/notice-reg")
+public class NoticeRegController extends HttpServlet{
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		String id = request.getParameter("id");
-
-		Notice n = null;
-		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+	
 		String url = "jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&amp;useSSL=false&characterEncoding=UTF-8";
-		String sql = "SELECT *FROM Notice WHERE id like ?";
+		String sql = "INSERT INTO Notice(id,title,content,writerid) VALUES(?,?,?,?)";
 
-		
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -40,40 +41,33 @@ public class NoticeDetailController extends HttpServlet{
 			// 실행
 			//Statement st = con.createStatement();
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, id);
 			
-			// 결과 가져오기
-			ResultSet rs = st.executeQuery();
+			st.setString(1, title);
+			st.setString(2, content);
+			st.setString(3, id);
+		
 
-			// Model 
-			
-			
-			// 결과 사용하기
-			while (rs.next()) {
-				n = new Notice();
-				n.setId(rs.getString("ID"));
-				n.setTitle(rs.getString("TITLE"));
-				n.setContent(rs.getString("CONTENT"));
-				n.setWriterId(rs.getString("WRITERID"));
-				//..
-				
-			}
-			rs.close();
+			// 결과 가져오기
+			int result = st.executeUpdate();
+
+		
 			st.close();
 			con.close();
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		response.sendRedirect("notice-list");
+	}
 
-		
-		
-		request.setAttribute("dd", n);
-		
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		//response.sendRedirect("notice.jsp");
-		request.getRequestDispatcher("/WEB-INF/views/customer/notice/detail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/customer/notice/reg.jsp").forward(request, response);
 	}
 
 }

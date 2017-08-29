@@ -107,37 +107,39 @@
 					<li>공지사항</li>
 				</ol>
 			</div>
-			<table border="1">
+			<form method="post">
+				<table border="1">
 
-				<tr>
-					<th>제목</th>
-					<td colspan="3">${dd.title}</td>
-				</tr>
-				<tr>
-					<th>작성일</th>
-					<td colspan="3">${dd.regDate}</td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<td>${dd.id}</td>
+					<tr>
+						<th>제목</th>
+						<td colspan="3"><input name="title" value="${dd.title}" /></td>
+					</tr>
+					<tr>
+						<th>작성일</th>
+						<td colspan="3">${dd.regDate}</td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td>${dd.id}</td>
 
-					<th>조회수</th>
-					<td>${dd.hit}</td>
-				</tr>
-				<tr>
-					<th>첨부파일</th>
-					<td colspan="3"></td>
-				</tr>
-				<tr>
-					<td colspan="4">${dd.content}</td>
-				</tr>
+						<th>조회수</th>
+						<td>${dd.hit}</td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td colspan="4"><textarea name="content">${dd.content}</textarea></td>
+					</tr>
 
-			</table>
-			<div>
-			<a href="notice-list" class="btn btn-default">목록</a>
-			<a href="notice-edit?id=${dd.id}" class="btn btn-default">수정</a>
-			<a href="notice-del" class="btn btn-default">삭제</a>
-			</div>
+				</table>
+				<div>
+					<input type="hidden" name="id" value="${dd.id}" /> 
+					<input type="submit" class="btn btn-default" value="저장" /></a> 
+					<a href="notice-detail?id=${dd.id}" class="btn btn-default">취소</a>
+				</div>
+			</form>
 			</main>
 		</div>
 	</div>

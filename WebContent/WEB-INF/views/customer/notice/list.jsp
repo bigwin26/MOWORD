@@ -43,7 +43,7 @@
 						type="submit" />
 				</form>
 			</div>
-			<table border="1">
+			<table class="table table-list">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -51,7 +51,7 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-				<c:forEach var="n" items="${list}">
+				<c:forEach var="n" items="${list}" begin="0" end="3">
 					<tr>
 						<td>${n.id}</td>
 						<td><a href="notice-detail?id=${n.id}">${n.title}</a></td>
@@ -62,8 +62,8 @@
 				</c:forEach>
 			</table>
 
-			<span class="btn btn-default" href="">글쓰기</span> <a
-				class="btn-img btn-cancel" href="">취소</a> </main>
+			<a class="btn btn-default" href="notice-reg">글쓰기</a>
+			<a class="btn-img btn-cancel" href="">취소</a> </main>
 		</div>
 	</div>
 	<!--  --------------푸터부분--------------- -->
