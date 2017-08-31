@@ -29,7 +29,8 @@ public class NoticeRegController extends HttpServlet{
 		String content = request.getParameter("content");
 	
 		String url = "jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&amp;useSSL=false&characterEncoding=UTF-8";
-		String sql = "INSERT INTO Notice(id,title,content,writerid) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO Notice(id,title,content,writerid) "
+				+ "VALUES((select ifnull(max(cast(id as unsigned)),0)+1 id from Notice n),?,?,?)";
 
 
 		try {
@@ -44,7 +45,7 @@ public class NoticeRegController extends HttpServlet{
 			
 			st.setString(1, title);
 			st.setString(2, content);
-			st.setString(3, id);
+			st.setString(3, "newlec");
 		
 
 			// 결과 가져오기
