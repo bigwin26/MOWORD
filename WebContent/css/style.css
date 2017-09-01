@@ -25,27 +25,29 @@ body {
 	font-size: 11px;
 	color: #979797;
 }
+/* ----------------------------------------text-style----------------------------------- */
+.text-left{
+	text-align: left;
+}
 
-/* #search-form input[type="submit"]{
-   width: 31px;
-   height: 25px;
-   background: url("../images/btn-zoom.png");
-   border: 0px;
-   text-indent: -999px;왼쪽으로 밈 (들여쓰기)
-   border-left:  1px solid #8CBA34;
-   cursor: pointer;
-   overflow: hidden;
-} */
+.text-center{
+	text-align: center;
+}
 
-/* #main a{
-   width: 64px;
-   height: 23px;
-   border: 2px solid aqua;
-   text-indent: -99px;왼쪽으로 밈 (들여쓰기)
-   background: url("../images/btn-cancel.png");
-   display: inline-block;
-   overflow: hidden;
-} */
+.text-right{
+	text-align: right;
+}
+
+.text-indent{
+	text-indent: 10px;
+}
+
+.text-strong{
+	color:black;
+	font-weight: bold;
+}
+
+/* ----------------------------------------btn-style----------------------------------- */
 .btn {
 	display: inline-block;
 	border: 0px;
@@ -119,6 +121,7 @@ body {
 	display: table;
 	width: 100%;
 	border-top: 2px solid #8cba35;
+	table-layout: fixed;
 }
 
 .table tr, .table .tr {
@@ -137,10 +140,19 @@ body {
 	background: #f5f5f5 url("../images/bg-title-sp.png") no-repeat left
 		center;
 }
+
+
+.table tr td.text-left,
+ .table tr th.text-left,
+  .table .tr td.text-left,
+   .table .tr th.text-left{
+	text-align: left;
+}
 /* --------------------------------main style--------------------------------- */
 main .title{
 	overflow:hidden;
 	white-space:nowrap;
+	text-overflow: ellipsis;
 }
 
 main .main{

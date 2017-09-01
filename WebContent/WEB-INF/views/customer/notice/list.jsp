@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -38,40 +39,57 @@
 
 			<div>
 				<h3>공지사항 검색 폼</h3>
-				<form action="notice" method="get">
+				<form action="notice-list" method="get">
 					<label>검색어</label> <input type="text" name="title" /> <input
 						type="submit" />
 				</form>
 			</div>
 			<table class="table table-list">
 				<tr>
-					<th>번호</th>
+					<th class="wd60">번호</th>
 					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
+					<th class="wd100">작성자</th>
+					<th class="wd100">작성일</th>
+					<th class="wd60">조회수</th>
 				</tr>
 				<c:forEach var="n" items="${list}">
 					<tr>
-						<td class="wd60">${n.id}</td>
-						<td class="wd400"><a href="notice-detail?id=${n.id}">${n.title}</a></td>
-						<td class="wd100">newlec</td>
-						<td class="wd100">${n.regDate}</td>
-						<td class="wd60">${n.hit}</td>
+						<td>${n.id}</td>
+						<td class="title text-left text-indent"><a href="notice-detail?id=${n.id}">${n.title}</a></td>
+						<td>newlec</td>
+						<td>${n.regDate}</td>
+						<td>${n.hit}</td>
 					</tr>
 				</c:forEach>
 			</table>
-				<div><a href="?p=1">이전</a></div>
+			
 			<c:set var="page" value="${param.p}"/>
 			<c:set var="startNum" value="${page-(page-1)%5}" />
+			<c:set var="lastNum" value="${fn:substringBefore((count%10 == 0 ? count/10 : count/10+1),'.')}"/>
+			
 			<div>
+				<div>
+					<a href="?p=1">이전</a>
+				</div>
 				<ul>
-				<c:forEach var="a" begin="0" end="4">
-					<li><a href="?p=${startNum+a}">${startNum+a}</a></li>
+					<c:forEach var="a" begin="0" end="4">
+						<c:set var="strong" value="" />
+						<c:if test="${page ==startNum+a}">
+							<c:set var="strong" value="text-strong" />
+						</c:if>
+						<c:if test="${startNum+a<=lastNum}">
+							<li><a class="${strong}" href="?p=${startNum+a}">${startNum+a}</a></li>
+						</c:if>
+						<c:if test="${startNum+a>lastNum}">
+							<li>${startNum+a}</li>
+						</c:if>
 					</c:forEach>
-					
 				</ul>
-				<div><a href="?p=6">다음</a></div>
+				<div>
+					<c:if test="${lastNum>=startNum+5}">
+						<a href="?p=${startNum+5}">다음</a>
+					</c:if>
+				</div>
 			</div>
 			<a class="btn btn-default" href="notice-reg">글쓰기</a>
 			<a class="btn-img btn-cancel" href="">취소</a> </main>

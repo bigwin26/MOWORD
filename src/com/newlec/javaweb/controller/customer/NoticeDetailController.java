@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.newlec.javaweb.dao.NoticeDao;
+import com.newlec.javaweb.dao.jdbc.JdbcNoticeDao;
 import com.newlec.javaweb.entity.Notice;
 
 @WebServlet("/customer/notice-detail")
@@ -25,50 +27,8 @@ public class NoticeDetailController extends HttpServlet{
 		
 		String id = request.getParameter("id");
 
-		Notice n = null;
-		
-		String url = "jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&amp;useSSL=false&characterEncoding=UTF-8";
-		String sql = "SELECT *FROM Notice WHERE id like ?";
-
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// 연결 / 인증
-			Connection con = DriverManager.getConnection(url, "sist", "cclass");
-
-			// 실행
-			//Statement st = con.createStatement();
-			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, id);
-			
-			// 결과 가져오기
-			ResultSet rs = st.executeQuery();
-
-			// Model 
-			
-			
-			// 결과 사용하기
-			while (rs.next()) {
-				n = new Notice();
-				n.setId(rs.getString("ID"));
-				n.setTitle(rs.getString("TITLE"));
-				n.setContent(rs.getString("CONTENT"));
-				n.setWriterId(rs.getString("WRITERID"));
-				//..
-				
-			}
-			rs.close();
-			st.close();
-			con.close();
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		
+		NoticeDao dao = new JdbcNoticeDao();
+		Notice n  = dao.get(id);
 		
 		request.setAttribute("dd", n);
 		
