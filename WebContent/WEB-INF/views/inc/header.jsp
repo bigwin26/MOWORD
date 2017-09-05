@@ -38,9 +38,9 @@
          <nav id="member-menu" class="hr-list member-menu">   
             <h1 class="hidden">회원메뉴</h1>
             <ul>
-               <li><a href="">HOME</a></li>
-               <li><a href="">로그인</a></li>
-               <li><a href="">회원가입</a></li>
+               <li><a href="${path}/index">HOME</a></li>
+               <li><a href="${path}/member/login">로그인</a></li>
+               <li><a href="${path}/member/agree">회원가입</a></li>
             </ul> 
          </nav>
             

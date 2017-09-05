@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+/* var json =[
+	{id:"1",title:"title"},
+	{id:"2",title:"good"}
+];
+alert(json[1].title]);
+alert(json[1]["title"]);
+ */
+ /* var data = eval('({id:"1",title:"title"})'); */
+ var data = JSON.parse('{"id":1,"title":"title"}'); 
+alert(typeof data.title);
+</script>
+</body>
+</html>
+
+<!-- type of = 데이터형식을 출력해줌.
+제이슨사용시 표기법준수. 숫자에는 ""안넣음. -->
