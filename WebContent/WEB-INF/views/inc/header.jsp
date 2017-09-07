@@ -39,7 +39,16 @@
             <h1 class="hidden">회원메뉴</h1>
             <ul>
                <li><a href="${path}/index">HOME</a></li>
-               <li><a href="${path}/member/login">로그인</a></li>
+               
+               <li>
+               <c:if test="${empty sessionScope.id}">
+               <a href="${path}/member/login">로그인</a>
+                </c:if>
+                 <c:if test="${not empty sessionScope.id}">
+               <a href="${path}/member/logout">로그아웃</a>
+               </c:if>
+               </li>
+              
                <li><a href="${path}/member/agree">회원가입</a></li>
             </ul> 
          </nav>
@@ -47,7 +56,7 @@
          <nav id="custom-menu" class="hr-list">
             <h1 class="hidden">고객메뉴</h1>
             <ul>
-               <li><a href=""><img src="${path}/images/txt-mypage.png"  alt="마이페이지" /></a></li>
+               <li><a href="${path}/member/home"><img src="${path}/images/txt-mypage.png"  alt="마이페이지" /></a></li>
                <li><a href="${path}/customer/notice-list"><img src="../images/txt-customer.png"  alt="고객센터" /></a></li>
             </ul>
          </nav>

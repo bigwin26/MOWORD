@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../css/reset.css" type="text/css" rel="stylesheet" />
-<link href="../../css/style.css" type="text/css" rel="stylesheet" />
+<link href="../css/reset.css" type="text/css" rel="stylesheet" />
+<link href="../css/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -134,9 +134,9 @@
 
 			</table>
 			<div>
-			<a href="list" class="btn btn-default">목록</a>
-			<a href="edit?id=${dd.id}" class="btn btn-default">수정</a>
-			<a href="del" class="btn btn-default">삭제</a>
+			<a href="notice-list" class="btn btn-default">목록</a>
+			<a href="notice-edit?id=${dd.id}" class="btn btn-default">수정</a>
+			<a href="notice-del" class="btn btn-default">삭제</a>
 			</div>
 			</main>
 		</div>

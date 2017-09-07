@@ -1,6 +1,7 @@
 package com.newlec.javaweb.controller.admin.notice;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.newlec.javaweb.entity.Notice;
 
@@ -66,9 +68,16 @@ public class NoticeRegController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("id")==null)
+			out.write("<script>alert('로그인이 필요합니다');location.href='../../member/login';</script>");
+		else
 		//response.sendRedirect("notice.jsp");
-		request.getRequestDispatcher("/WEB-INF/views/admin/notice/reg.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 	}
 
 }
