@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet{
 		
 		if(_memberId==null)
 			//out.write("<script>alert('로그인이 필요합니다');location.href='../member/login';</script>");
-			response.sendRedirect("login");
+			response.sendRedirect("login?returnURL=home");
 		else {
 			String memberId = _memberId.toString();
 			MemberRoleDao memberRoleDao = new JdbcMemberRoleDao();

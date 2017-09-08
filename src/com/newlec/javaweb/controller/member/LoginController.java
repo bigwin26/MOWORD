@@ -36,6 +36,11 @@ public class LoginController extends HttpServlet {
           * cookie 모든 사용자 상태정보 저장 저장소 application
           */
          request.getSession().setAttribute("id", id);
+         String returnURL = request.getParameter("returnURL");
+         
+         if(returnURL != null)
+         response.sendRedirect(returnURL);
+         else
          response.sendRedirect("../index");
       }
 

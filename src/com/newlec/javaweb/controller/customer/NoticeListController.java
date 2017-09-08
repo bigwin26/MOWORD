@@ -25,6 +25,14 @@ public class NoticeListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		
+		
+		
+		
+		
+		
+		
 		String _query = request.getParameter("title");
 		String query="";
 		String _page=request.getParameter("p");

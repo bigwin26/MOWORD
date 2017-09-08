@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 <script type="text/javascript">
 
 	/* var data = [2,4,6,8,0];
@@ -67,16 +65,38 @@ alert(add(1,2,3,4,5));
  var a = f();
  alert(a);
   */
-  function printResult(){
- var x,y;
- x = prompt("x 값을 입력하세요", 0);
- y = prompt("y 값을 입력하세요", 0);
-x = parseInt(x);
-y = parseInt(y);
- btn.value=x+y;
-  }
+
+	
+	function calcApp() {
+		var xText = document.getElementById("x");
+		var yText = document.getElementById("y");
+		var addButton = document.getElementById("add-button");
+		var resultText = document.getElementById("result");
+		
+		addButton.onclick = addButtonClick;
+
+		function addButtonClick() {
+			var x, y;
+		/* x = prompt("x 값을 입력하세요", 0);
+			y = prompt("y 값을 입력하세요", 0);  */
+			x = parseInt(xText.value);
+			y = parseInt(yText.value);
+			 
+			resultText.value = x + y;
+		}
+
+	}
+
+	window.onload = calcApp;
 </script>
-<input type="button" value="출력" id="btn" onclick="printResult();"/>
+</head>
+<body>
+
+<input type="text" id ="x" palaceholder="x값을 입력하세요"/>
+<input type="text" id ="y" palaceholder="y값을 입력하세요"/>
+=
+<input type="button" value="더하기" id="add-button"/>
+<input type="text" value="결과" id="result"/>
 </body>
 </html>
 
